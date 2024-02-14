@@ -43,7 +43,7 @@ export default function UserDetails({ selectedUser, isSelected }) {
               Select a user to view details
             </div>
             {/* card container */}
-            <div className="bg-slate-700 rounded-xl flex flex-col items-center p-4 gap-4 animate-pulse">
+            <div className="bg-slate-700 rounded-xl flex flex-col items-center p-8 gap-4 animate-pulse">
               {/* avatar */}
               <div className="w-32 h-32 rounded-full bg-slate-600"></div>
               {/* personal details */}

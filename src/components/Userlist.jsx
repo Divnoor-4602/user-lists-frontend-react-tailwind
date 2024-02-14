@@ -8,6 +8,7 @@ export default function Userlist() {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState();
   const [isSelected, setIsSelected] = useState(false);
+  const [error, setError] = useState(false);
   const [selectedUser, setSelectedUser] = useState({
     avatar: "",
     firstName: "",
@@ -25,8 +26,12 @@ export default function Userlist() {
       .then((response) => {
         setUsers(response.data);
         setIsLoading(false);
+        setError(false);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        setIsLoading(false);
+        setError(true);
+      });
   }, []);
 
   function handleUserSelect(selectedUserIndex) {
@@ -74,6 +79,13 @@ export default function Userlist() {
                     </>
                   );
                 })}
+            {error && (
+              <>
+                <div className="bg-red-800 h-max rounded-xl text-red-300 text-center py-2 text-xl font-semibold">
+                  No data to show
+                </div>
+              </>
+            )}
             {!isLoading && users.length != 0 && (
               <>
                 {users.slice(10, users.length).map((user) => {
@@ -92,6 +104,7 @@ export default function Userlist() {
                     </>
                   );
                 })}
+                {}
               </>
             )}
           </div>
